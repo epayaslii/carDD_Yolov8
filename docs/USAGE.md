@@ -1,3 +1,4 @@
+[USAGE.md](https://github.com/user-attachments/files/25021499/USAGE.md)
 # Usage Guide
 
 Complete guide for using the Car Damage Detection System.
@@ -28,7 +29,6 @@ python main.py
 ## Basic Usage
 
 ### Single Image Detection
-
 ```python
 from ultralytics import YOLO
 import cv2
@@ -46,7 +46,6 @@ results[0].show()
 ```
 
 ### Batch Processing
-
 ```python
 from pathlib import Path
 
@@ -62,7 +61,6 @@ for img_path in Path(image_folder).glob('*.jpg'):
 ### 1. Main Vehicle Focus Detection
 
 Automatically detects and analyzes only the primary vehicle:
-
 ```python
 # Method 1: Largest vehicle (default)
 main_box = max(boxes, key=lambda b: b.area)
@@ -76,7 +74,6 @@ main_box = max(boxes, key=lambda b: b.conf)
 ```
 
 ### 2. Damage Classification
-
 ```python
 # Get detailed damage information
 for box in results[0].boxes:
@@ -86,7 +83,6 @@ for box in results[0].boxes:
 ```
 
 ### 3. Custom Annotations
-
 ```python
 import cv2
 
@@ -102,7 +98,6 @@ cv2.imwrite('annotated.jpg', image)
 ## Configuration
 
 ### Confidence Thresholds
-
 ```python
 # Lower threshold = more detections (may include false positives)
 results = model.predict(image, conf=0.05)
@@ -116,7 +111,6 @@ results = model.predict(image, conf=0.50)
 - Damage detection: `conf=0.10` to `0.25`
 
 ### Image Size
-
 ```python
 # Smaller = faster, less accurate
 results = model.predict(image, imgsz=320)
@@ -127,72 +121,6 @@ results = model.predict(image, imgsz=1280)
 
 **Recommended:** `imgsz=640` (default)
 
-### Device Selection
-
-```python
-# Use GPU (if available)
-results = model.predict(image, device='cuda')
-
-# Use CPU
-results = model.predict(image, device='cpu')
-
-# Auto-detect
-results = model.predict(image, device='0')  # First GPU or CPU
-```
-
-## Output Formats
-
-### Save Annotated Images
-
-```python
-# Save with default name
-results = model.predict(image, save=True)
-
-# Save to specific directory
-results = model.predict(image, save=True, project='outputs', name='run1')
-```
-
-### Export Results to JSON
-
-```python
-import json
-
-damage_report = {
-    'image': image_path,
-    'vehicles': len(vehicle_boxes),
-    'damages': []
-}
-
-for box in damage_boxes:
-    damage_report['damages'].append({
-        'type': model.names[int(box.cls)],
-        'confidence': float(box.conf),
-        'bbox': box.xyxy[0].tolist()
-    })
-
-with open('report.json', 'w') as f:
-    json.dump(damage_report, f, indent=2)
-```
-
-### Export to CSV
-
-```python
-import csv
-
-with open('damages.csv', 'w', newline='') as f:
-    writer = csv.writer(f)
-    writer.writerow(['Image', 'Damage Type', 'Confidence', 'X1', 'Y1', 'X2', 'Y2'])
-    
-    for box in results[0].boxes:
-        x1, y1, x2, y2 = box.xyxy[0].tolist()
-        writer.writerow([
-            image_path,
-            model.names[int(box.cls)],
-            float(box.conf),
-            x1, y1, x2, y2
-        ])
-```
-
 ## Troubleshooting
 
 ### Common Issues
@@ -202,11 +130,6 @@ with open('damages.csv', 'w', newline='') as f:
 Error: FileNotFoundError: trained.pt not found
 ```
 **Solution:** Download the model or check the path
-```python
-# Verify model exists
-import os
-print(os.path.exists('YOLO11m-Car-Damage-Detector/trained.pt'))
-```
 
 **2. Out of memory**
 ```
@@ -223,31 +146,8 @@ Warning: No damage detected
 ```
 **Solution:** Lower confidence threshold
 ```python
-results = model.predict(image, conf=0.05)  # Lower threshold
+results = model.predict(image, conf=0.05)
 ```
-
-**4. Too many false positives**
-```
-Warning: Many incorrect detections
-```
-**Solution:** Increase confidence threshold
-```python
-results = model.predict(image, conf=0.40)  # Higher threshold
-```
-
-### Performance Tips
-
-1. **Use GPU** if available (10-50x faster)
-2. **Resize large images** before processing
-3. **Batch process** multiple images together
-4. **Use appropriate confidence** thresholds
-5. **Cache models** in memory (don't reload each time)
-
-### Getting Help
-
-- Check [Issues](https://github.com/YOUR_USERNAME/car-damage-detection/issues)
-- Read [FAQ](#faq)
-- Open a new issue with details
 
 ## FAQ
 
@@ -255,14 +155,10 @@ results = model.predict(image, conf=0.40)  # Higher threshold
 A: JPG, JPEG, PNG, BMP, TIFF, WEBP
 
 **Q: Can I use videos?**  
-A: Yes, but you need to extract frames first or modify the code
+A: Yes, but you need to extract frames first
 
 **Q: How accurate is the model?**  
-A: Accuracy depends on image quality and damage visibility. Test with your specific use case.
+A: Accuracy depends on image quality and damage visibility
 
 **Q: Can I train on my own data?**  
 A: Yes! See the Training section in README.md
-
----
-
-For more examples, check the [examples/](../examples/) folder.
