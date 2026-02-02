@@ -213,11 +213,10 @@ For questions or feedback, please open an issue on GitHub.
 ## 🔮 Future Improvements
 
 - [ ] Add damage severity classification
-- [ ] Implement cost estimation based on damage type
 - [ ] Create web interface for easy usage
 - [ ] Support for video processing
 - [ ] Multi-angle damage analysis
-- [ ] Damage report generation (PDF/Excel)
+
 
 ---
 
