@@ -202,11 +202,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgments
 
-- **YOLO11M Model**: [ReverendBayes/YOLO11m-Car-Damage-Detector](https://github.com/ReverendBayes/YOLO11m-Car-Damage-Detector)
+- **YOLOv8 Model**: [ReverendBayes/YOLO11m-Car-Damage-Detector](https://github.com/ReverendBayes/YOLO11m-Car-Damage-Detector)
 - **Ultralytics**: For the amazing YOLO framework
 - **Roboflow Model**: For dataset management tools (https://universe.roboflow.com/curacel-ai/car-damage-detection-5ioys)
 - Yunus Karaman, Nimet Karagoz (For research idea and Feedback)
-- Gonul Beril Aksu (Collaboration on the design phase)
+- Gonul Beril Aksu (For Collaboration on the Design Process)
 ## 📧 Contact
 
 For questions or feedback, please open an issue on GitHub.
