@@ -1,7 +1,7 @@
 [README.md](https://github.com/user-attachments/files/25011829/README.md)
 # 🚗 Car Damage Detection System
 
-AI-powered car damage detection system using YOLO11 and YOLOv8 models to automatically identify and classify vehicle damage.
+AI-powered car damage detection system using YOLOv8 model to automatically identify and classify vehicle damage.
 
 ## 📋 Overview
 
@@ -15,7 +15,7 @@ This project uses state-of-the-art deep learning models to:
 
 - **Automatic Vehicle Detection**: Uses YOLOv8 or custom Roboflow model to detect cars, buses, and trucks
 - **Smart Focus Detection**: Automatically identifies the main vehicle in the image (largest/closest)
-- **Damage Classification**: Detects multiple damage types using YOLO11m model
+- **Damage Classification**: Detects multiple damage types using YOLOv8 model
 - **Visual Results**: Generates annotated images with color-coded bounding boxes
   - 🔵 Blue = Main vehicle
   - ⚪ Gray = Other vehicles  
@@ -45,7 +45,7 @@ pip install ultralytics opencv-python matplotlib roboflow
 
 ### 3. Download models
 
-**YOLO11 Damage Detection Model:**
+**YOLOv8 Damage Detection Model:**
 ```bash
 git clone https://github.com/ReverendBayes/YOLO11m-Car-Damage-Detector.git
 ```
@@ -100,7 +100,7 @@ car-damage-detection/
 ├── README.md                        # This file
 ├── requirements.txt                 # Python dependencies
 ├── damaged_pics/                    # Input images folder
-├── YOLO11m-Car-Damage-Detector/    # YOLO11 model
+├── YOLO11m-Car-Damage-Detector/    # YOLOv8 model
 │   └── trained.pt                   # Trained weights
 └── outputs/                         # Annotated results
 ```
@@ -114,7 +114,7 @@ Each processed image shows:
 
 ## 📊 Damage Types Detected
 
-The model can detect various damage types including:
+The model can detect 23 various damage types including:
 - Scratches
 - Dents
 - Cracks
