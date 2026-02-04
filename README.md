@@ -15,7 +15,7 @@ This project uses state-of-the-art deep learning models to:
 ## 🎯 Project Workflow
 
 ### 1. **Data Collection & Preparation**
-- Downloaded annotated dataset from Roboflow
+- Obtained annotated dataset from Roboflow via the API key of the model found (
 - Dataset: Car Damage Detection with multiple damage types
 - Format: YOLOv8 compatible annotations
 
@@ -409,7 +409,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - **YOLO11m Model**: [ReverendBayes/YOLO11m-Car-Damage-Detector](https://github.com/ReverendBayes/YOLO11m-Car-Damage-Detector)
 - **Ultralytics**: For the amazing YOLO framework
-- **Roboflow**: For dataset management tools
+- **Roboflow Model**: (https://universe.roboflow.com/capstone-nh0nc/car-damage-detection-t0g92)
 
 ## 📧 Contact
 
