@@ -15,7 +15,7 @@ This project uses state-of-the-art deep learning models to:
 ## 🎯 Project Workflow
 
 ### 1. **Data Collection & Preparation**
-- Obtained annotated dataset from Roboflow via the API key of the model found (
+- Obtained annotated dataset from Roboflow via the API key of the model found in Roboflow Universe
 - Dataset: Car Damage Detection with multiple damage types
 - Format: YOLOv8 compatible annotations
 
@@ -26,7 +26,7 @@ Since the Roboflow dataset didn't include pre-trained weights:
 - Implemented dual-model approach: vehicle detection + damage detection
 
 ### 3. **Initial Testing**
-- Tested YOLO11m model on our damaged vehicle images
+- Tested YOLOv8 model on our damaged vehicle images
 - Adjusted confidence threshold to `conf=0.10` for optimal detection
 - Visualized results with bounding boxes and damage labels
 
@@ -73,7 +73,7 @@ Created comprehensive reporting system:
 ### Core Capabilities
 - **Automatic Vehicle Detection**: Custom-trained YOLOv8 model to detect cars, buses, and trucks
 - **Smart Focus Detection**: Automatically identifies the main vehicle in multi-vehicle scenes
-- **Damage Classification**: Detects 8+ damage types using fine-tuned YOLO11m model
+- **Damage Classification**: Detects 23 various damage types using fine-tuned YOLOv8 model
 - **Cost Estimation**: Automated repair cost calculation based on damage type
 - **Visual Results**: Generates annotated images with color-coded bounding boxes
   - 🔵 Blue = Main vehicle
@@ -92,35 +92,45 @@ Created comprehensive reporting system:
 ## 🛠️ Technologies Used
 
 - **Python 3.x**
-- **Ultralytics YOLO** - Object detection framework
+- **Ultralytics YOLOv8 Version** - Object detection framework
 - **OpenCV** - Image processing
 - **Matplotlib** - Visualization
 - **Roboflow** - Dataset management (optional)
 
 ## 📦 Installation
 
-### 1. Clone the repository
+Follow these steps in the correct order:
+
+### 1. Install Required Packages
 ```bash
-git clone https://github.com/YOUR_USERNAME/car-damage-detection.git
-cd car-damage-detection
+pip install ultralytics roboflow opencv-python matplotlib pandas
 ```
 
-### 2. Install dependencies
-```bash
-pip install ultralytics opencv-python matplotlib roboflow
+### 2. Download Roboflow Dataset (For Training)
+```python
+from roboflow import Roboflow
+
+# Get your API key from: https://roboflow.com/
+rf = Roboflow(api_key="YOUR_API_KEY_HERE")
+project = rf.workspace("car-damage-detection-yolo").project("car-damage-detection-5ioys-pqnzm")
+version = project.version(1)
+dataset = version.download("yolov8")
+
+print(f"✅ Dataset downloaded to: {dataset.location}")
 ```
 
-### 3. Download models
-
-**YOLO11 Damage Detection Model:**
+### 3. Clone Pre-trained YOLOv8 Model for the pt weights 
 ```bash
 git clone https://github.com/ReverendBayes/YOLO11m-Car-Damage-Detector.git
 ```
 
-**YOLOv8 Vehicle Detection (automatic download):**
-```python
-from ultralytics import YOLO
-model = YOLO('yolov8n.pt')  # Downloads automatically on first run
+This provides the `trained.pt` weights file for damage detection.
+
+
+### 4. Prepare Your Images (Optional)
+```bash
+mkdir damaged_pics
+# Add your vehicle damage images to this folder
 ```
 
 ## 🚀 Usage
@@ -272,11 +282,11 @@ Each processed image shows:
 - **Training images**: 2,025 images
 - **Validation images**: 289 images  
 - **Test images**: 145 images
-- **Damage classes**: 8+ types (dents, scratches, cracks, etc.)
+- **Damage classes**: 23 types (dents, scratches, cracks, etc.)
 
 ### Model Performance
 - **Training epochs**: 35
-- **Final confidence threshold**: 0.10 (optimized for recall)
+- **Final confidence threshold**: 0.10 (optimized for recall and overfitting)
 - **Detection speed**: ~50ms per image (GPU)
 - **Accuracy**: High precision on common damage types
 
@@ -420,9 +430,6 @@ For questions or feedback, please open an issue on GitHub.
 ### Planned Features
 - [ ] **Severity Classification**: Add minor/moderate/severe damage categories
 - [ ] **Multi-angle Analysis**: Combine detections from multiple photos of same vehicle
-- [ ] **Web Interface**: Flask/Streamlit app for easy non-technical user access
-- [ ] **Mobile App**: React Native app for on-site damage assessment
-- [ ] **Video Support**: Real-time damage detection from video streams
 - [ ] **3D Damage Mapping**: Visualize damage locations on 3D vehicle models
 - [ ] **Insurance Integration**: API for direct insurance claim submission
 - [ ] **Historical Database**: Track repair costs and common damage patterns
