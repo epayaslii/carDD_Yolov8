@@ -273,8 +273,6 @@ Each processed image shows:
 - **Red boxes**: Detected damage areas with type labels
 - **Gray boxes**: Other vehicles in the image (not analyzed)
 
-### Sample Results
-![Sample Detection](docs/images/output_image1.png)
 
 ## 📊 Project Results
 
