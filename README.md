@@ -1,6 +1,6 @@
 # 🚗 Car Damage Detection & Cost Estimation System
 
-AI-powered car damage detection system using YOLO11m and custom-trained models to automatically identify, classify, and estimate repair costs for vehicle damage.
+AI-powered car damage detection system using YOLOv8 model and custom-trained models to automatically identify, classify, and estimate repair costs for vehicle damage.
 
 ## 📋 Overview
 
