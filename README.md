@@ -274,7 +274,7 @@ Each processed image shows:
 - **Gray boxes**: Other vehicles in the image (not analyzed)
 
 ### Sample Results
-![Sample Detection](docs/images/example_output.jpg)
+![Sample Detection](docs/images/output_image1.png)
 
 ## 📊 Project Results
 
